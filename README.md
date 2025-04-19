@@ -1,4 +1,4 @@
-<h1 align="center"><img src="AME.AppFetch/Assets/appfetch.png?raw=true" width="16" height="16" style="vertical-align: middle; margin-right: 10px;" alt="App Fetch Icon"> App Fetch Experimental</h1>
+<h1 align="center"><img src="AME.AppFetch/Assets/appfetch.png?raw=true" width="32" height="32" style="vertical-align: middle; margin-right: 16px;" alt="App Fetch Icon"> App Fetch Experimental</h1>
 <h3 align="center">Streamlined MS Store App Fetcher</h3>
 
 ---
