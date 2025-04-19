@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="BlueButtonStyle" TargetType="Button">
+        <Setter Property="Height" Value="22" />
+        <Setter Property="MinWidth" Value="78" />
+        <Setter Property="Width" Value="78" />
+        <Setter Property="Padding" Value="19,2" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="Button">
+                <Border x:Name="Container" UseLayoutRounding="True" Height="{TemplateBinding Height}"
+                        CornerRadius="3" BorderThickness="1" Background="#0067c0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="1,0">
+                            <GradientStop Offset="0.885" Color="#fa0067c0" />
+                            <GradientStop Offset="0.99" Color="#044984" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Rectangle UseLayoutRounding="True" x:Name="Rect" Margin="0,0,0,0" Fill="#1673c5" RadiusX="2"
+                                   RadiusY="2">
+                            <Rectangle.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="Fill" Duration="0:0:0.05" />
+                                </Transitions>
+                            </Rectangle.Transitions>
+                        </Rectangle>
+                        <Grid x:Name="ContentContainer">
+                            <Grid.Transitions>
+                                <Transitions>
+                                    <DoubleTransition Property="Opacity" Duration="0:0:0.25" />
+                                </Transitions>
+                            </Grid.Transitions>
+
+                            <ContentPresenter x:Name="PART_ContentPresenter" HorizontalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}" />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        
+        <Style Selector="^:pointerover:not(:pressed) /template/ Rectangle#Rect">
+            <Setter Property="Fill" Value="#ff227ad2"/>
+        </Style>
+        <Style Selector="^:pointerover:not(:pressed) /template/ Border#Container">
+            <Setter Property="Background" Value="#ff227ad2"/>
+        </Style>
+        <Style Selector="^:not(:pointerover):not(:pressed) /template/ Rectangle#Rect">
+            <Setter Property="Fill" Value="#0067c0"/>
+        </Style>
+        <Style Selector="^:not(:pointerover):not(:pressed) /template/ Border#Container">
+            <Setter Property="Background" Value="#0067c0"/>
+        </Style>
+        
+        <Style Selector="^:pressed /template/ Border#Container">
+            <Setter Property="BorderBrush">
+                <LinearGradientBrush StartPoint="1,0">
+                    <GradientStop Offset="0.885" Color="#fa0067c0" />
+                    <GradientStop Offset="0.99" Color="#fa0067c0" />
+                </LinearGradientBrush>
+            </Setter>
+        </Style>
+        <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Opacity" Value="0.7"/>
+        </Style>
+        <Style Selector="^:not(:pressed) /template/ Border#Container">
+            <Setter Property="BorderBrush">
+                <LinearGradientBrush StartPoint="1,0">
+                    <GradientStop Offset="0.885" Color="#fa0067c0" />
+                    <GradientStop Offset="0.99" Color="#044984" />
+                </LinearGradientBrush>
+            </Setter>
+        </Style>
+        <Style Selector="^:not(:pressed) /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+        
+        <Style Selector="^:inactive /template/ Border#Container">
+            <Setter Property="Opacity" Value="0.65"/>
+        </Style>
+        <Style Selector="^:not(:inactive) /template/ Border#Container">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

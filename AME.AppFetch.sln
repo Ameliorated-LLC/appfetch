@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AME.AppFetch", "AME.AppFetch\AME.AppFetch.csproj", "{BE532E0F-0570-433B-8119-4D4903510158}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AME.FluentUI", "..\..\Code\AME.FluentUI\AME.FluentUI.csproj", "{E48D86A7-8745-45A1-84B7-C020BBF0E468}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AME.FluentUI.FluentIcons", "..\..\Code\AME.FluentIcons\AME.FluentUI.FluentIcons.csproj", "{316AF0A2-30AD-40EE-B693-7A8B96E23777}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE532E0F-0570-433B-8119-4D4903510158}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE532E0F-0570-433B-8119-4D4903510158}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE532E0F-0570-433B-8119-4D4903510158}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE532E0F-0570-433B-8119-4D4903510158}.Release|x64.Build.0 = Release|Any CPU
+		{E48D86A7-8745-45A1-84B7-C020BBF0E468}.Debug|x64.ActiveCfg = Release|Windows-x64
+		{E48D86A7-8745-45A1-84B7-C020BBF0E468}.Debug|x64.Build.0 = Release|Windows-x64
+		{E48D86A7-8745-45A1-84B7-C020BBF0E468}.Release|x64.ActiveCfg = Release|Windows-x64
+		{E48D86A7-8745-45A1-84B7-C020BBF0E468}.Release|x64.Build.0 = Release|Windows-x64
+		{316AF0A2-30AD-40EE-B693-7A8B96E23777}.Debug|x64.ActiveCfg = Release|Windows-x64
+		{316AF0A2-30AD-40EE-B693-7A8B96E23777}.Debug|x64.Build.0 = Release|Windows-x64
+		{316AF0A2-30AD-40EE-B693-7A8B96E23777}.Release|x64.ActiveCfg = Release|Windows-x64
+		{316AF0A2-30AD-40EE-B693-7A8B96E23777}.Release|x64.Build.0 = Release|Windows-x64
+	EndGlobalSection
+EndGlobal

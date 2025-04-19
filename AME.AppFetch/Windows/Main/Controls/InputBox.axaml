@@ -1,0 +1,147 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Design.PreviewWith>
+        <Border Height="100" Width="300" Background="DimGray">
+            <StackPanel>
+            <TextBox
+                UseLayoutRounding="True" FontSize="15"
+                CaretBrush="{DynamicResource TextBrush}"
+                MaxLines="1"
+                Foreground="{DynamicResource TextBrush}"
+                MaxLength="64" Margin="0,14,0,0"
+                Watermark="Search"
+                HorizontalAlignment="Stretch"
+                Theme="{DynamicResource InputBox}">
+            </TextBox>
+            <TextBox
+                UseLayoutRounding="True" FontSize="15"
+                CaretBrush="{DynamicResource TextBrush}"
+                MaxLines="1"
+                Foreground="{DynamicResource TextBrush}"
+                MaxLength="64" Margin="0,14,0,0"
+                Watermark="Search"
+                HorizontalAlignment="Stretch"
+                Theme="{DynamicResource InputBox}">
+                <TextBox.InnerRightContent>
+                    <FluentIcon Foreground="{DynamicResource TextBrush}" Opacity="0.9" IconSourceSize="24" FontSize="16" Icon="SearchRegular" Margin="0,3,-1,0" VerticalAlignment="Bottom"/>
+                </TextBox.InnerRightContent>
+            </TextBox>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="InputBoxWatermarkBrush" Color="#616161" />
+            <SolidColorBrush x:Key="InputBoxBackgroundBrush" Color="#55ffffff" />
+            <SolidColorBrush x:Key="InputBoxBackgroundHighlightBrush" Color="#AAffffff" />
+
+            <LinearGradientBrush x:Key="InputBoxBorderBrush" StartPoint="0,0" EndPoint="0,34">
+                <GradientStop Offset="0.92" Color="#88f0f0f0" />
+                <GradientStop Offset="0.95" Color="#888d8d8d" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="InputBoxBorderHighlightBrush" StartPoint="0,0" EndPoint="0,34">
+                <GradientStop Offset="0.92" Color="#88f0f0f0" />
+                <GradientStop Offset="0.95" Color="#0067c0" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="InputBoxWatermarkBrush" Color="#969696" />
+            <SolidColorBrush x:Key="InputBoxBackgroundBrush" Color="#55323232" />
+            <SolidColorBrush x:Key="InputBoxBackgroundHighlightBrush" Color="#88323232" />
+
+            <LinearGradientBrush x:Key="InputBoxBorderBrush" StartPoint="0,0" EndPoint="0,34">
+                <GradientStop Offset="0.92" Color="#88303030" />
+                <GradientStop Offset="0.95" Color="#889a9a9a" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="InputBoxBorderHighlightBrush" StartPoint="0,0" EndPoint="0,34">
+                <GradientStop Offset="0.92" Color="#88303030" />
+                <GradientStop Offset="0.95" Color="#4cc2ff" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <ControlTheme TargetType="TextBox" x:Key="InputBox">
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="SelectionBrush" Value="#0067c0"/>
+        <Setter Property="SelectionForegroundBrush" Value="#d5d6dd"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border CornerRadius="4" Height="34" Padding="8,6,8,7" Background="{DynamicResource InputBoxBackgroundBrush}"
+                        BorderThickness="1" x:Name="Container" BorderBrush="{DynamicResource InputBoxBorderBrush}">
+
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <ContentPresenter Grid.Column="0"
+                                          Content="{TemplateBinding InnerLeftContent}" />
+                        <ScrollViewer Name="PART_ScrollViewer"
+                                      Grid.Column="1"
+                                      AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                                      BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}"
+                                      HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                      IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                                      VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                            <Panel>
+                                <TextBlock Name="watermark"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           Opacity="0.5"
+                                           Text="{TemplateBinding Watermark}"
+                                           TextAlignment="{TemplateBinding TextAlignment}"
+                                           TextWrapping="{TemplateBinding TextWrapping}"
+                                           Foreground="{DynamicResource InputBoxWatermarkBrush}">
+                                    <TextBlock.IsVisible>
+                                        <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                            <Binding ElementName="PART_TextPresenter" Path="PreeditText"
+                                                     Converter="{x:Static StringConverters.IsNullOrEmpty}" />
+                                            <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text"
+                                                     Converter="{x:Static StringConverters.IsNullOrEmpty}" />
+                                        </MultiBinding>
+                                    </TextBlock.IsVisible>
+                                </TextBlock>
+                                <TextPresenter Name="PART_TextPresenter"
+                                               CaretBlinkInterval="{TemplateBinding CaretBlinkInterval}"
+                                               CaretBrush="{TemplateBinding CaretBrush}"
+                                               CaretIndex="{TemplateBinding CaretIndex}"
+                                               LineHeight="{TemplateBinding LineHeight}"
+                                               LetterSpacing="{TemplateBinding LetterSpacing}"
+                                               PasswordChar="{TemplateBinding PasswordChar}"
+                                               RevealPassword="{TemplateBinding RevealPassword}"
+                                               SelectionBrush="{TemplateBinding SelectionBrush}"
+                                               SelectionEnd="{TemplateBinding SelectionEnd}"
+                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                               SelectionStart="{TemplateBinding SelectionStart}"
+                                               Text="{TemplateBinding Text,Mode=TwoWay}"
+                                               TextAlignment="{TemplateBinding TextAlignment}"
+                                               TextWrapping="{TemplateBinding TextWrapping}" />
+                            </Panel>
+                            <ScrollViewer.Styles>
+                                <Style Selector="ScrollContentPresenter#PART_ContentPresenter">
+                                    <Setter Property="Cursor" Value="IBeam" />
+                                </Style>
+                            </ScrollViewer.Styles>
+                        </ScrollViewer>
+                        <ContentPresenter Grid.Column="2"
+                                          Grid.ColumnSpan="1"
+                                          Content="{TemplateBinding InnerRightContent}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#Container">
+            <Setter Property="Background" Value="{DynamicResource InputBoxBackgroundHighlightBrush}" />
+        </Style>
+        <Style Selector="^:focus /template/ Border#Container">
+            <Setter Property="BorderThickness" Value="1,1,1,2" />
+            <Setter Property="Padding" Value="8,6,8,6" />
+            <Setter Property="BorderBrush" Value="{DynamicResource InputBoxBorderHighlightBrush}" />
+            <Setter Property="Background" Value="{DynamicResource InputBoxBackgroundHighlightBrush}" />
+        </Style>
+        <Style Selector="^:focus /template/ TextBlock#watermark">
+            <Setter Property="Opacity" Value="0.65" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

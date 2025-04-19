@@ -1,0 +1,190 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:AME.AppFetch.Windows.Main.Controls">
+    <Design.PreviewWith>
+        <Border Padding="0" Width="400" Height="300" Background="White">
+            <Grid ColumnDefinitions="*,30">
+
+                <ScrollViewer Name="ScrollViewer" VerticalScrollBarVisibility="Hidden"
+                              HorizontalScrollBarVisibility="Disabled">
+
+                    <StackPanel>
+                        <TextBlock FontSize="30" Text="Rizz" />
+
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                        <TextBlock FontSize="30" Text="Rizz" />
+                    </StackPanel>
+                </ScrollViewer>
+
+                <controls:ScrollPill ScrollViewer="{Binding ElementName=ScrollViewer}" Grid.Column="1" />
+            </Grid>
+        </Border>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type controls:ScrollPill}" TargetType="controls:ScrollPill">
+        <Setter Property="Background" Value="{DynamicResource HighlightBrush}" />
+        <Setter Property="Foreground" Value="#83878A" />
+        <Setter Property="Width" Value="9" />
+        <Setter Property="Margin" Value="0,1,0,1" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="PART_TopContainer" HorizontalAlignment="Stretch" UseLayoutRounding="False"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Background="{TemplateBinding Background, Converter={StaticResource ToTransparentConverter}}">
+                    <Grid RowDefinitions="9,*,9" HorizontalAlignment="Right">
+                        
+                        <Button Name="PART_UpButton" IsEnabled="False" Margin="0,0,0,0">
+                            <Button.Theme>
+                                <ControlTheme TargetType="Button">
+                                    <Setter Property="Transitions">
+                                        <Transitions>
+                                            <DoubleTransition Property="Opacity" Duration="0:0:0.075" Easing="SineEaseOut"/>
+                                        </Transitions>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <ControlTemplate>
+                                            <Canvas Margin="1.5,0,0,0">
+                                                <Path Margin="-0.25,-0.25,0,0" VerticalAlignment="Top"
+                                                      Fill="{TemplateBinding Foreground}" Name="Geometry">
+                                                    <Path.Data>
+                                                        <PathGeometry>
+                                                            <PathFigure StartPoint="0,6.5">
+                                                                <LineSegment Point="3.25,3.25" />
+                                                                <LineSegment Point="6.5,6.5" />
+                                                                <LineSegment Point="0,6.5" />
+                                                            </PathFigure>
+                                                        </PathGeometry>
+                                                    </Path.Data>
+                                                </Path>
+
+                                                <FluentIcon Foreground="{TemplateBinding Foreground}" Name="Chevron"
+                                                            Correction="-1, 0,-1,0" Icon="ChevronDownFilled" Margin="-1,0,0,0"
+                                                            IconSourceSize="12" FontSize="10">
+                                                    <FluentIcon.RenderTransform>
+                                                        <RotateTransform Angle="180" />
+                                                    </FluentIcon.RenderTransform>
+                                                </FluentIcon>
+                                            </Canvas>
+                                        </ControlTemplate>
+                                    </Setter>
+                                    
+                                    <Style Selector="^:pointerover">
+                                        <Style Selector="^ /template/ Path#Geometry">
+                                            <Setter Property="Fill" Value="Black" />
+                                        </Style>
+                                        <Style Selector="^ /template/ FluentIcon#Chevron">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Style>
+                                    </Style>
+                                    <Style Selector="^:disabled">
+                                        <Setter Property="Opacity" Value="0"/>
+                                    </Style>
+                                </ControlTheme>
+                            </Button.Theme>
+                        </Button>
+                        <Border Grid.Row="1" x:Name="PART_Container" Margin="1.5,0,1.5,0"
+                                UseLayoutRounding="False" HorizontalAlignment="Stretch"
+                                Opacity="1" VerticalAlignment="Stretch">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <ThicknessTransition Property="Margin" Duration="0:0:0.1"/>
+                                </Transitions>
+                            </Border.Transitions>
+                            <Border x:Name="PART_Rect"
+                                    HorizontalAlignment="Right" Background="{TemplateBinding Foreground}" Width="2"
+                                    VerticalAlignment="Top" Height="0" CornerRadius="2">
+                                <Border.RenderTransform>
+                                    <TranslateTransform />
+                                </Border.RenderTransform>
+                                <Border.Transitions>
+                                    <Transitions>
+                                        <DoubleTransition Property="Width" Duration="0:0:0.1" Easing="SineEaseInOut" />
+                                    </Transitions>
+                                </Border.Transitions>
+                            </Border>
+                        </Border>
+                        <Button Grid.Row="2" Name="PART_DownButton" IsEnabled="False" Margin="0,0,0,0">
+                            <Setter Property="Transitions">
+                                <Transitions>
+                                    <DoubleTransition Property="Opacity" Duration="0:0:0.075" Easing="SineEaseOut"/>
+                                </Transitions>
+                            </Setter>
+                            <Button.Theme>
+                                <ControlTheme TargetType="Button">
+                                    <Setter Property="Template">
+                                        <ControlTemplate>
+                                            <Canvas Margin="1.5,0,0,0">
+                                                <Path Margin="-0.25,2.75,0,0" VerticalAlignment="Top"
+                                                      Fill="{TemplateBinding Foreground}" Name="Geometry">
+                                                    <Path.Data>
+                                                        <PathGeometry>
+                                                            <PathFigure StartPoint="0,6.5">
+                                                                <LineSegment Point="3.25,3.25" />
+                                                                <LineSegment Point="6.5,6.5" />
+                                                                <LineSegment Point="0,6.5" />
+                                                            </PathFigure>
+                                                        </PathGeometry>
+                                                    </Path.Data>
+                                                    
+                                                    <Path.RenderTransform>
+                                                        <RotateTransform Angle="180" />
+                                                    </Path.RenderTransform>
+                                                </Path>
+
+                                                <FluentIcon Foreground="{TemplateBinding Foreground}" Name="Chevron"
+                                                            Correction="-1, 0,-1,0" Icon="ChevronDownFilled" Margin="-1,0,0,0"
+                                                            IconSourceSize="12" FontSize="10">
+                                                </FluentIcon>
+                                            </Canvas>
+                                        </ControlTemplate>
+                                    </Setter>
+                                    
+                                    <Style Selector="^:pointerover">
+                                        <Style Selector="^ /template/ Path#Geometry">
+                                            <Setter Property="Fill" Value="Black" />
+                                        </Style>
+                                        <Style Selector="^ /template/ FluentIcon#Chevron">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Style>
+                                    </Style>
+                                    <Style Selector="^:disabled">
+                                        <Setter Property="Opacity" Value="0"/>
+                                    </Style>
+                                </ControlTheme>
+                            </Button.Theme>
+                        </Button>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover">
+            <Style Selector="^ /template/ Border#PART_Rect">
+                <Setter Property="Width" Value="6" />
+                <Setter Property="CornerRadius" Value="3"/>
+            </Style>
+            <Style Selector="^ /template/ Border#PART_Container">
+            </Style>
+            <Style Selector="^ /template/ Border#PART_TopContainer">
+                <Setter Property="Background" Value="{TemplateBinding Background}" />
+            </Style>
+            <Style Selector="^ /template/ Button#PART_UpButton">
+                <Setter Property="IsEnabled" Value="True" />
+            </Style>
+            <Style Selector="^ /template/ Button#PART_DownButton">
+                <Setter Property="IsEnabled" Value="True" />
+            </Style>
+        </Style>
+
+    </ControlTheme>
+
+</ResourceDictionary>

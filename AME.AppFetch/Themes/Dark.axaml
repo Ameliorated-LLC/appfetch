@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <SolidColorBrush x:Key="PrimaryBrush" Color="Black"/>
+    <Color x:Key="PrimaryColor">Black</Color>
+    <SolidColorBrush x:Key="PrimaryInverseBrush" Color="White"/>
+    <Color x:Key="PrimaryInverseColor">White</Color>
+    
+    <SolidColorBrush x:Key="HighlightBrush" Opacity="0.05" Color="White"/>
+    <SolidColorBrush x:Key="HighlightHardBrush" Opacity="0.1" Color="White"/>
+    
+    <SolidColorBrush x:Key="SoftBorderBrush" Color="#44303030"/>
+    <SolidColorBrush x:Key="SoftElementBackground" Color="#66323232"/>
+    
+    <SolidColorBrush x:Key="TextBrush" Color="#d5d6dd"/>
+    <Color x:Key="TextColor">#d5d6dd</Color>
+    <SolidColorBrush x:Key="TextHardBrush" Color="White"/>
+    <Color x:Key="TextHardColor">White</Color>
+    <SolidColorBrush x:Key="TextSoftBrush" Color="#909090"/>
+    <Color x:Key="TextSoftColor">#909090</Color>
+    <SolidColorBrush x:Key="TextMediumBrush" Color="#C2C5CB"/>
+    <Color x:Key="TextMediumColor">#C2C5CB</Color>
+    
+    <SolidColorBrush x:Key="IndicatorColor" Color="#49a7d8"/>
+    
+    <SolidColorBrush x:Key="ModalBorderBrush" Color="#1b1b1e"/>
+    <SolidColorBrush x:Key="ModalPrimaryBrush" Color="#262627"/>
+    <SolidColorBrush x:Key="ModalSeparatorBrush" Color="#282828"/>
+    <SolidColorBrush x:Key="ModalSecondaryBrush" Color="#1f1f22"/>
+    
+    <SolidColorBrush x:Key="PopupPrimaryBrush" Color="#262627" Opacity="0.5"/>
+    <SolidColorBrush x:Key="PopupSeparatorBrush" Color="#282828" Opacity="0.8"/>
+    <SolidColorBrush x:Key="PopupSecondaryBrush" Color="#1f1f22" Opacity="0.7"/>
+    
+
+</ResourceDictionary>

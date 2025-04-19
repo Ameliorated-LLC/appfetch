@@ -1,0 +1,145 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:AME.AppFetch.Windows.Main"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:AME.AppFetch.Windows.Main.Controls"
+        x:Class="AME.AppFetch.Windows.Main.Window"
+        x:DataType="local:Handler"
+        mc:Ignorable="d" d:DesignWidth="453" d:DesignHeight="527"
+        Title="App Fetch"
+        CanResize="False"
+        Width="453" Height="527"
+        MinWidth="453" MinHeight="527">
+
+    <Design.DataContext>
+        <local:Handler />
+    </Design.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="Controls/InputBox.axaml" />
+                <ResourceInclude Source="Controls/CloseButton.axaml" />
+                <ResourceInclude Source="Controls/DismissButton.axaml" />
+                <ResourceInclude Source="Controls/InstallButton.axaml" />
+                <ResourceInclude Source="Controls/ScrollPill.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid RowDefinitions="51,*">
+        <Grid Grid.Row="0" Grid.Column="0">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal" Margin="21,16,0,0">
+                <Image Source="/Assets/appfetch.ico" Height="23"
+                       RenderOptions.BitmapInterpolationMode="HighQuality" />
+                <TextBlock Name="Title" Foreground="{DynamicResource TextBrush}" Text="App Fetch Experimental"
+                           Margin="17,2,0,0" FontSize="12" />
+            </StackPanel>
+            <DockPanel Grid.Column="0" PointerPressed="TitleBar_PointerPressed"
+                       Background="Transparent" />
+            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Theme="{StaticResource CloseButton}"
+                    Click="CloseButton_OnClick" />
+        </Grid>
+
+        <Grid Grid.Row="1" RowDefinitions="40,Auto,*" Margin="30,12,30,1">
+            <TextBox x:Name="InputBox"
+                     KeyDown="InputBox_OnKeyDown"
+                     UseLayoutRounding="True" FontSize="15"
+                     CaretBrush="{DynamicResource TextBrush}"
+                     MaxLines="1"
+                     Foreground="{DynamicResource TextBrush}"
+                     MaxLength="40" Margin="0,0,0,0" Opacity="1"
+                     Theme="{DynamicResource InputBox}"
+                     Watermark="Search">
+                <TextBox.InnerRightContent>
+                    <FluentIcon Foreground="{DynamicResource TextBrush}" Opacity="0.9" IconSourceSize="24"
+                                FontSize="16" Icon="SearchRegular" Margin="0,3,-1,0" VerticalAlignment="Bottom" />
+                </TextBox.InnerRightContent>
+            </TextBox>
+
+            <ArcSpinner Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50"
+                        IsSpinning="{Binding IsLoading}"
+                        SpeedMultiplier="1.8" ThicknessMultiplier="0.8" Foreground="{DynamicResource IndicatorColor}"
+                        Background="{DynamicResource HighlightBrush}" />
+
+                <Border Grid.Row="1" x:Name="ErrorContainer" IsEnabled="{Binding Error, Mode=TwoWay}"
+                        CornerRadius="9" BorderThickness="1" HorizontalAlignment="Stretch">
+                    <Border.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:0.15" Easing="QuadraticEaseInOut" />
+                            <ThicknessTransition Property="Margin" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                        </Transitions>
+                    </Border.Transitions>
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="Red" Opacity="0.2" />
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <SolidColorBrush Color="Red" Opacity="0.1" />
+                    </Border.Background>
+                    <Grid ColumnDefinitions="60,*,80" Height="67"  HorizontalAlignment="Stretch">
+                        <FluentIcon Foreground="#EEe60000" Icon="ErrorCircleFilled" IconSourceSize="24" FontSize="32" />
+                        <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,9,0,0">
+                            <TextBlock Text="{Binding ErrorTitle}" TextTrimming="WordEllipsis"
+                                       Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
+                            <TextBlock FontSize="11" Text="{Binding ErrorDescription}" VerticalAlignment="Top"
+                                       Margin="0,1,0,0" TextWrapping="Wrap"
+                                       TextTrimming="WordEllipsis" MaxHeight="30" MaxWidth="260"
+                                       Foreground="{DynamicResource TextSoftBrush}" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Theme="{StaticResource DismissButton}"
+                                VerticalAlignment="Center" Click="DismissButton_OnClick" />
+                    </Grid>
+                    <Border.Styles>
+                        <Style Selector="Border#ErrorContainer:disabled">
+                            <Setter Property="RenderTransform" Value="scale(0.9, 0.9)" />
+                            <Setter Property="Opacity" Value="0" />
+                            <Setter Property="Margin" Value="0,0,0,-67" />
+                        </Style>
+                    </Border.Styles>
+                </Border>
+
+                <ScrollViewer Grid.Row="2" Margin="0,10,0,0" x:Name="ScrollViewer" VerticalScrollBarVisibility="Hidden"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="local:StoreItem">
+                                <Border Height="67" BorderBrush="{DynamicResource SoftBorderBrush}"
+                                        Background="{DynamicResource SoftElementBackground}"
+                                        CornerRadius="9" Margin="0,0,0,5" BorderThickness="1"
+                                        HorizontalAlignment="Stretch">
+                                    <Grid ColumnDefinitions="53,*,73" HorizontalAlignment="Stretch" Margin="14,0,14,0">
+                                        <Image Source="{Binding Icon}" Height="36" Width="36"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left" Margin="0,1,0,0"
+                                               RenderOptions.BitmapInterpolationMode="HighQuality" />
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Top" MaxWidth="260" HorizontalAlignment="Left"
+                                                    Margin="0,9,0,0">
+                                            <TextBlock Text="{Binding Name}" TextTrimming="WordEllipsis"
+                                                       Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
+                                            <TextBlock FontSize="11" Text="{Binding Description}"
+                                                       VerticalAlignment="Top" Margin="0,1,0,0" TextWrapping="Wrap"
+                                                       TextTrimming="WordEllipsis" MaxHeight="30"
+                                                       Foreground="{DynamicResource TextSoftBrush}" />
+                                        </StackPanel>
+                                        <Button Grid.Column="2" Theme="{StaticResource InstallButton}"
+                                                Content="{Binding InstallButtonContent}"
+                                                IsHitTestVisible="{Binding InstallButtonClickable}"
+                                                IsEnabled="{Binding InstallButtonEnabled}"
+                                                Command="{Binding InstallButtonCommand}"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            <controls:ScrollPill Grid.Row="2" Margin="0,10,-27,4" HorizontalAlignment="Right" ScrollViewer="{Binding ElementName=ScrollViewer}"/>
+        </Grid>
+    </Grid>
+
+</Window>

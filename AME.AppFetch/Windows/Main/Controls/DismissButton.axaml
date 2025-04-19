@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Design.PreviewWith>
+        <Border Height="100" Width="300" Background="GhostWhite">
+            <StackPanel>
+                <Button Theme="{DynamicResource CloseButton}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    
+    <ControlTheme TargetType="Button" x:Key="DismissButton">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Content" Value="✕"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border RenderOptions.TextRenderingMode="Unspecified" CornerRadius="8" Background="{TemplateBinding Background}" x:Name="MainBorder">
+                    <Border.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:0.25"/>
+                        </Transitions>
+                    </Border.Transitions>
+                    <ContentPresenter Margin="0,0,0,0" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      x:Name="Content" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:disabled /template/ Border#MainBorder">
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
+        <Style Selector="^:pointerover /template/ Border#MainBorder">
+            <Setter Property="Background" Value="{DynamicResource HighlightHardBrush}"/>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

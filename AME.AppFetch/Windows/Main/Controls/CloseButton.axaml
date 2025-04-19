@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Design.PreviewWith>
+        <Border Height="100" Width="300" Background="GhostWhite">
+            <StackPanel>
+                <Button Theme="{DynamicResource CloseButton}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    
+    <ControlTheme TargetType="Button" x:Key="CloseButton">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Content" Value="✕"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="29"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border RenderOptions.TextRenderingMode="Unspecified" Background="{TemplateBinding Background}" x:Name="MainBorder">
+                    <Border.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:0.25"/>
+                        </Transitions>
+                    </Border.Transitions>
+                    <ContentPresenter Margin="0,0,0,3" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      x:Name="Content" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:disabled /template/ Border#MainBorder">
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
+        <Style Selector="^:pointerover /template/ Border#MainBorder">
+            <Setter Property="Background" Value="#c42b1c"/>
+        </Style>
+        <Style Selector="^:pressed /template/ Border#MainBorder">
+            <Setter Property="Background" Value="#EEc42b1c"/>
+        </Style>
+        <Style Selector="^:pointerover /template/ ContentPresenter#Content">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
