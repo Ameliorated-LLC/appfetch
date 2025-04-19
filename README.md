@@ -3,7 +3,7 @@
 
 ---
 
-![App Fetch Screenshot](screenshot.png?raw=true)
+<img src="screenshot.png?raw=true" width="300" alt="App Fetch Screenshot">
 
 ---
 
