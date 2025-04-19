@@ -3,7 +3,7 @@
 
 ---
 
-<img src="screenshot.png?raw=true" width="300" alt="App Fetch Screenshot">
+<img align="center" src="screenshot.png?raw=true" width="450" alt="App Fetch Screenshot">
 
 ---
 
