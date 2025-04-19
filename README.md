@@ -3,7 +3,7 @@
 
 ---
 <p align="center">
-	<img src="screenshot.png?raw=true" style="display: block; margin: auto; width: 450px;" alt="App Fetch Screenshot">
+	<img src="screenshot.png?raw=true" width="450" alt="App Fetch Screenshot">
 </p>
 ---
 
