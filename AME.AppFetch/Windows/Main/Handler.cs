@@ -29,6 +29,7 @@ public class StoreItem : ReactiveObject
     
     public StoreService.StoreProductListDto Package { get; set; }
     public Handler Handler { get; set; }
+    
     public async void InstallButtonCommand()
     {
         if (InstallButtonContent is not string command)
@@ -96,6 +97,8 @@ public class StoreItem : ReactiveObject
                 Handler.ErrorDescription = $"An unexpected error occured while attempting to {(command == "Uninstall" ? "uninstall" : "install")} " + Name + ".";
 
             Handler.Error = true;
+            Handler.Update = false;
+            Handler.Updated = false;
             
             InstallButtonContent = "Install";
         }
@@ -117,6 +120,10 @@ public class Handler : ReactiveObject
     public string? ErrorTitle { get; set => this.SetValue(ref field, value); }
     public string? ErrorDescription { get; set => this.SetValue(ref field, value); }
     public bool Error { get; set => this.SetValue(ref field, value); }
+    public bool Update { get; set => this.SetValue(ref field, value); }
+    public bool Updated { get; set => this.SetValue(ref field, value); }
+    public string? UpdateDescription { get; set => this.SetValue(ref field, value); } = "App Fetch version 1.1 is available for install";
+    public string? UpdatedDescription { get; set => this.SetValue(ref field, value); } = "Successfully updated to App Fetch version 1.1";
 
     public async Task Search(string searchTerm)
     {
@@ -219,6 +226,8 @@ public class Handler : ReactiveObject
             ErrorTitle = "Error searching for apps";
             ErrorDescription = "Network request failed. Ensure you have a stable internet connection.";
             Error = true;
+            Update = false;
+            Updated = false;
         }
         
         IsLoading = false;

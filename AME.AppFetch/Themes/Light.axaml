@@ -31,4 +31,9 @@
     <SolidColorBrush x:Key="PopupPrimaryBrush" Color="#ffffff" Opacity="0.2"/>
     <SolidColorBrush x:Key="PopupSeparatorBrush" Color="#d5d5d5" Opacity="0.6"/>
     <SolidColorBrush x:Key="PopupSecondaryBrush" Color="#f3f3f3" Opacity="0.4"/>
+    
+    <SolidColorBrush x:Key="NoticeBoxBrush" Color="#f2f4f7"/>
+    <SolidColorBrush x:Key="SuccessBoxBrush" Color="#f3f7f2"/>
+    
+    <SolidColorBrush x:Key="ContentBoxBorderBrush" Color="#e3e5e8"/>
 </ResourceDictionary>

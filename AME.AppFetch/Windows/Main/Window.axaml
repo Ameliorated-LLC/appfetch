@@ -63,82 +63,148 @@
                         SpeedMultiplier="1.8" ThicknessMultiplier="0.8" Foreground="{DynamicResource IndicatorColor}"
                         Background="{DynamicResource HighlightBrush}" />
 
-                <Border Grid.Row="1" x:Name="ErrorContainer" IsEnabled="{Binding Error, Mode=TwoWay}"
-                        CornerRadius="9" BorderThickness="1" HorizontalAlignment="Stretch">
-                    <Border.Transitions>
-                        <Transitions>
-                            <DoubleTransition Property="Opacity" Duration="0:0:0.15" Easing="QuadraticEaseInOut" />
-                            <ThicknessTransition Property="Margin" Duration="0:0:0.2" Easing="SineEaseInOut" />
-                            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" Easing="SineEaseInOut" />
-                        </Transitions>
-                    </Border.Transitions>
-                    <Border.BorderBrush>
-                        <SolidColorBrush Color="Red" Opacity="0.2" />
-                    </Border.BorderBrush>
-                    <Border.Background>
-                        <SolidColorBrush Color="Red" Opacity="0.1" />
-                    </Border.Background>
-                    <Grid ColumnDefinitions="60,*,80" Height="67"  HorizontalAlignment="Stretch">
-                        <FluentIcon Foreground="#EEe60000" Icon="ErrorCircleFilled" IconSourceSize="24" FontSize="32" />
-                        <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,9,0,0">
-                            <TextBlock Text="{Binding ErrorTitle}" TextTrimming="WordEllipsis"
-                                       Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
-                            <TextBlock FontSize="11" Text="{Binding ErrorDescription}" VerticalAlignment="Top"
-                                       Margin="0,1,0,0" TextWrapping="Wrap"
-                                       TextTrimming="WordEllipsis" MaxHeight="30" MaxWidth="260"
-                                       Foreground="{DynamicResource TextSoftBrush}" />
-                        </StackPanel>
-                        <Button Grid.Column="2" Theme="{StaticResource DismissButton}"
-                                VerticalAlignment="Center" Click="DismissButton_OnClick" />
-                    </Grid>
-                    <Border.Styles>
-                        <Style Selector="Border#ErrorContainer:disabled">
-                            <Setter Property="RenderTransform" Value="scale(0.9, 0.9)" />
-                            <Setter Property="Opacity" Value="0" />
-                            <Setter Property="Margin" Value="0,0,0,-67" />
-                        </Style>
-                    </Border.Styles>
-                </Border>
+            <Border Grid.Row="1" x:Name="ErrorContainer" IsEnabled="{Binding Error, Mode=TwoWay}"
+                    CornerRadius="9" BorderThickness="1" HorizontalAlignment="Stretch">
+                <Border.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.15" Easing="QuadraticEaseInOut" />
+                        <ThicknessTransition Property="Margin" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                    </Transitions>
+                </Border.Transitions>
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="Red" Opacity="0.2" />
+                </Border.BorderBrush>
+                <Border.Background>
+                    <SolidColorBrush Color="Red" Opacity="0.1" />
+                </Border.Background>
+                <Grid ColumnDefinitions="60,*,80" Height="67" HorizontalAlignment="Stretch">
+                    <FluentIcon Foreground="#EEe60000" Icon="ErrorCircleFilled" IconSourceSize="24" FontSize="32" />
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,9,0,0">
+                        <TextBlock Text="{Binding ErrorTitle}" TextTrimming="WordEllipsis"
+                                   Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
+                        <TextBlock FontSize="11" Text="{Binding ErrorDescription}" VerticalAlignment="Top"
+                                   Margin="0,1,0,0" TextWrapping="Wrap"
+                                   TextTrimming="WordEllipsis" MaxHeight="30" MaxWidth="260"
+                                   Foreground="{DynamicResource TextSoftBrush}" />
+                    </StackPanel>
+                    <Button Grid.Column="2" Theme="{StaticResource DismissButton}" HorizontalAlignment="Right" Margin="0,0,20,0"
+                            VerticalAlignment="Center" Click="DismissButton_OnClick" />
+                </Grid>
+                <Border.Styles>
+                    <Style Selector="Border#ErrorContainer:disabled">
+                        <Setter Property="RenderTransform" Value="scale(0.9, 0.9)" />
+                        <Setter Property="Opacity" Value="0" />
+                        <Setter Property="Margin" Value="0,0,0,-67" />
+                    </Style>
+                </Border.Styles>
+            </Border>
 
-                <ScrollViewer Grid.Row="2" Margin="0,10,0,0" x:Name="ScrollViewer" VerticalScrollBarVisibility="Hidden"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <ItemsControl HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  ItemsSource="{Binding Items}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="local:StoreItem">
-                                <Border Height="67" BorderBrush="{DynamicResource SoftBorderBrush}"
-                                        Background="{DynamicResource SoftElementBackground}"
-                                        CornerRadius="9" Margin="0,0,0,5" BorderThickness="1"
-                                        HorizontalAlignment="Stretch">
-                                    <Grid ColumnDefinitions="53,*,73" HorizontalAlignment="Stretch" Margin="14,0,14,0">
-                                        <Image Source="{Binding Icon}" Height="36" Width="36"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Left" Margin="0,1,0,0"
-                                               RenderOptions.BitmapInterpolationMode="HighQuality" />
-                                        <StackPanel Grid.Column="1" VerticalAlignment="Top" MaxWidth="260" HorizontalAlignment="Left"
-                                                    Margin="0,9,0,0">
-                                            <TextBlock Text="{Binding Name}" TextTrimming="WordEllipsis"
-                                                       Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
-                                            <TextBlock FontSize="11" Text="{Binding Description}"
-                                                       VerticalAlignment="Top" Margin="0,1,0,0" TextWrapping="Wrap"
-                                                       TextTrimming="WordEllipsis" MaxHeight="30"
-                                                       Foreground="{DynamicResource TextSoftBrush}" />
-                                        </StackPanel>
-                                        <Button Grid.Column="2" Theme="{StaticResource InstallButton}"
-                                                Content="{Binding InstallButtonContent}"
-                                                IsHitTestVisible="{Binding InstallButtonClickable}"
-                                                IsEnabled="{Binding InstallButtonEnabled}"
-                                                Command="{Binding InstallButtonCommand}"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center" />
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            <controls:ScrollPill Grid.Row="2" Margin="0,10,-27,4" HorizontalAlignment="Right" ScrollViewer="{Binding ElementName=ScrollViewer}"/>
+            <Border Grid.Row="1" x:Name="UpdateContainer" IsEnabled="{Binding Update, Mode=TwoWay}"
+                    CornerRadius="9" BorderThickness="1" HorizontalAlignment="Stretch" Background="{DynamicResource NoticeBoxBrush}" BorderBrush="{DynamicResource ContentBoxBorderBrush}">
+                <Border.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.15" Easing="QuadraticEaseInOut" />
+                        <ThicknessTransition Property="Margin" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                    </Transitions>
+                </Border.Transitions>
+                <Grid ColumnDefinitions="60,*,80" Height="67" HorizontalAlignment="Stretch">
+                    <FluentIcon Foreground="Black" Icon="ArrowSyncFilled" IconSourceSize="24" FontSize="32" />
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,17,0,0">
+                        <TextBlock Text="An update is available" TextTrimming="WordEllipsis"
+                                   Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
+                        <TextBlock FontSize="11" Text="{Binding UpdateDescription}" VerticalAlignment="Top"
+                                   Margin="0,1,0,0" TextWrapping="Wrap"
+                                   TextTrimming="WordEllipsis" MaxHeight="30" MaxWidth="260"
+                                   Foreground="{DynamicResource TextSoftBrush}" />
+                    </StackPanel>
+                    <Button Grid.Column="2" x:Name="UpdateButton" Theme="{StaticResource InstallButton}"
+                            Content="Install"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,20,0"
+                            Click="UpdateButton_OnClick"
+                            VerticalAlignment="Center" />
+                </Grid>
+                <Border.Styles>
+                    <Style Selector="Border#UpdateContainer:disabled">
+                        <Setter Property="RenderTransform" Value="scale(0.9, 0.9)" />
+                        <Setter Property="Opacity" Value="0" />
+                        <Setter Property="Margin" Value="0,0,0,-67" />
+                    </Style>
+                </Border.Styles>
+            </Border>
+            
+            <Border Grid.Row="1" x:Name="UpdatedContainer" IsEnabled="{Binding Updated, Mode=TwoWay}"
+                    CornerRadius="9" BorderThickness="1" HorizontalAlignment="Stretch" Background="{DynamicResource SuccessBoxBrush}" BorderBrush="{DynamicResource ContentBoxBorderBrush}">
+                <Border.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.15" Easing="QuadraticEaseInOut" />
+                        <ThicknessTransition Property="Margin" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" Easing="SineEaseInOut" />
+                    </Transitions>
+                </Border.Transitions>
+                <Grid ColumnDefinitions="60,*,80" Height="67" HorizontalAlignment="Stretch">
+                    <FluentIcon Foreground="Green" Icon="ArrowSyncCheckmarkFilled" IconSourceSize="24" FontSize="32" />
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,17,0,0">
+                        <TextBlock Text="App Fetch update successful" TextTrimming="WordEllipsis"
+                                   Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
+                        <TextBlock FontSize="11" Text="{Binding UpdatedDescription}" VerticalAlignment="Top"
+                                   Margin="0,1,0,0" TextWrapping="Wrap"
+                                   TextTrimming="WordEllipsis" MaxHeight="30" MaxWidth="260"
+                                   Foreground="{DynamicResource TextSoftBrush}" />
+                    </StackPanel>
+                    <Button Grid.Column="2" Theme="{StaticResource DismissButton}" HorizontalAlignment="Right" Margin="0,0,20,0"
+                            VerticalAlignment="Center" Click="DismissButton_OnClick" />
+                </Grid>
+                <Border.Styles>
+                    <Style Selector="Border#UpdatedContainer:disabled">
+                        <Setter Property="RenderTransform" Value="scale(0.9, 0.9)" />
+                        <Setter Property="Opacity" Value="0" />
+                        <Setter Property="Margin" Value="0,0,0,-67" />
+                    </Style>
+                </Border.Styles>
+            </Border>
+
+            <ScrollViewer Grid.Row="2" Margin="0,10,0,0" x:Name="ScrollViewer" VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="local:StoreItem">
+                            <Border Height="67" BorderBrush="{DynamicResource SoftBorderBrush}"
+                                    Background="{DynamicResource SoftElementBackground}"
+                                    CornerRadius="9" Margin="0,0,0,5" BorderThickness="1"
+                                    HorizontalAlignment="Stretch">
+                                <Grid ColumnDefinitions="53,*,73" HorizontalAlignment="Stretch" Margin="14,0,14,0">
+                                    <Image Source="{Binding Icon}" Height="36" Width="36"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" Margin="0,1,0,0"
+                                           RenderOptions.BitmapInterpolationMode="HighQuality" />
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Top" MaxWidth="260" HorizontalAlignment="Left"
+                                                Margin="0,9,0,0">
+                                        <TextBlock Text="{Binding Name}" TextTrimming="WordEllipsis"
+                                                   Foreground="{DynamicResource TextBrush}" VerticalAlignment="Top" />
+                                        <TextBlock FontSize="11" Text="{Binding Description}"
+                                                   VerticalAlignment="Top" Margin="0,1,0,0" TextWrapping="Wrap"
+                                                   TextTrimming="WordEllipsis" MaxHeight="30"
+                                                   Foreground="{DynamicResource TextSoftBrush}" />
+                                    </StackPanel>
+                                    <Button Grid.Column="2" Theme="{StaticResource InstallButton}"
+                                            Content="{Binding InstallButtonContent}"
+                                            IsHitTestVisible="{Binding InstallButtonClickable}"
+                                            IsEnabled="{Binding InstallButtonEnabled}"
+                                            Command="{Binding InstallButtonCommand}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <controls:ScrollPill Grid.Row="2" Margin="0,10,-27,4" HorizontalAlignment="Right" ScrollViewer="{Binding ElementName=ScrollViewer}" />
         </Grid>
     </Grid>
 

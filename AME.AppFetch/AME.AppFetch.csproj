@@ -34,6 +34,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Code\AME.FluentUI\AME.FluentUI.csproj" />
+      <ProjectReference Include="..\..\AME.Core\AME.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>

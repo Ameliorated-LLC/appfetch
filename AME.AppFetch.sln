@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AME.FluentUI", "..\..\Code\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AME.FluentUI.FluentIcons", "..\..\Code\AME.FluentIcons\AME.FluentUI.FluentIcons.csproj", "{316AF0A2-30AD-40EE-B693-7A8B96E23777}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AME.Core", "..\AME.Core\AME.Core.csproj", "{202822F0-F7C0-494E-9D5B-D8501842A28C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -24,5 +26,9 @@ Global
 		{316AF0A2-30AD-40EE-B693-7A8B96E23777}.Debug|x64.Build.0 = Release|Windows-x64
 		{316AF0A2-30AD-40EE-B693-7A8B96E23777}.Release|x64.ActiveCfg = Release|Windows-x64
 		{316AF0A2-30AD-40EE-B693-7A8B96E23777}.Release|x64.Build.0 = Release|Windows-x64
+		{202822F0-F7C0-494E-9D5B-D8501842A28C}.Debug|x64.ActiveCfg = Release|MacOS
+		{202822F0-F7C0-494E-9D5B-D8501842A28C}.Debug|x64.Build.0 = Release|MacOS
+		{202822F0-F7C0-494E-9D5B-D8501842A28C}.Release|x64.ActiveCfg = Release|MacOS
+		{202822F0-F7C0-494E-9D5B-D8501842A28C}.Release|x64.Build.0 = Release|MacOS
 	EndGlobalSection
 EndGlobal
