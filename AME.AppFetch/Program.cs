@@ -130,6 +130,17 @@ sealed class Program
         {
             try
             {
+                try
+                {
+                    foreach (var process in Process.GetProcessesByName(Win32.ProcessEx.GetCurrentProcessFileLocation()).Where(x => x.Id != Process.GetCurrentProcess().Id))
+                    {
+                        process.Kill();
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+                
                 foreach (var userDir in Directory.GetDirectories(Environment.ExpandEnvironmentVariables(@"%SYSTEMDRIVE%\Users")))
                 {
                     if (File.Exists(Path.Combine(userDir, @"AppData\Roaming\OpenShell\Pinned\App Fetch Experimental.lnk")))
